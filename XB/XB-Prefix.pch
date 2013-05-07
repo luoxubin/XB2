@@ -11,4 +11,63 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "UIViewAdditions.h"
 #endif
+
+#import "DDLog.h" 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
+#ifdef DEBUG
+#define DLog(...) NSLog(__VA_ARGS__)
+#else
+#define DLog(...)	/* do nothing */
+#endif
+
+
+// color
+#define ColorRGB(c) 	[UIColor colorWithRed:(((c) >> 16) & 0xff) / 255.0f green:(((c) >> 8) & 0xff) / 255.0f blue:((c) & 0xff) / 255.0f alpha:1.0f]
+#define ColorRGBA(c) [UIColor colorWithRed:(((c) >> 24) & 0xff) / 255.0f green:(((c) >> 16) & 0xff) / 255.0f blue:(((c) >> 8) & 0xff) / 255.0f alpha:((c) & 0xff) / 255.0f]
+#define ColorRedGreenBlue(r, g, b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.0f]
+
+// shortcut
+#define NUM(x) [NSNumber numberWithInt:x]
+#define I2S(x) [NSString stringWithFormat:@"%d",x]
+
+// Return project path with resource name and suffix
+#define ResourcePath(X,Y) [[NSBundle mainBundle] pathForResource:(X) ofType:(Y)]
+
+// Check whether it is retina display
+#define IsRetina ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? \
+CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// Return UIImage with name (without suffix)
+#define PNGImage(N) [UIImage imageWithContentsOfFile:ResourcePath(([NSString stringWithFormat:@"%@@2x", (N)]), @"png")]
+#define PNGImage1x(N) [UIImage imageWithContentsOfFile:ResourcePath(([NSString stringWithFormat:@"%@", (N)]), @"png")]
+
+#define SafeRelease(R) if(R){[R release];R = nil;}
+#define CancelRequest(R)  if(R){[R cancel];[R release];R = nil;}
+#define FontWithSize(S)		[UIFont fontWithName:@"STHeitiSC-Medium" size:S]
+#define FontLiteWithSize(S) [UIFont fontWithName:@"STHeitiSC-Light" size:S]
+
+
+// frequency used color
+#define  ColorBG   ColorRedGreenBlue(255, 253, 247)
+#define  ColorCellSelected ColorRedGreenBlue(255, 123, 233)
+
+
+
+
+
+
+// QA
+#ifdef ENV_QA
+#define ROOT_URL              @"http://123.125.69.201:8080/iphone"
+// RD
+#elif defined ENV_RD
+#define ROOT_URL              @"http://123.125.69.251/iphone"
+// Online
+#else
+#define ROOT_URL              @"http://picman.s.baidu.com/iphone"
+#endif
+
+

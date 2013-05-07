@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XBTabBarController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class HTTPServer;
 
-@property (strong, nonatomic) UIWindow *window;
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UINavigationControllerDelegate>
+{
+    HTTPServer* httpServer;
+    UIWindow *window;
+    XBTabBarController* tabBarController;
+}
+
+@property (nonatomic,retain) UIWindow *window;
+@property (nonatomic,retain)XBTabBarController* tabBarController;
 
 @end
