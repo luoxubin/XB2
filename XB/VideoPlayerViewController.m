@@ -110,7 +110,7 @@
     //   NSLog(@"htmlabc:%@",lHtml1);
          NSLog(@"video source:%@",m3u8_url);
     
-    if([m3u8_url hasSuffix:@".m3u8"])
+    if([m3u8_url containsString:@"m3u8"])
     {        
         m_webView.delegate = nil;
         [m_handler praseUrl:m3u8_url];

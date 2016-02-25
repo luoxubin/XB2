@@ -23,7 +23,7 @@
 //解析m3u8的内容
 -(void)praseUrl:(NSString *)urlstr
 {
-    if([urlstr hasSuffix:@".m3u8"] == FALSE)
+    if([urlstr containsString:@"m3u8"] == FALSE)
     {
         NSLog(@" Invalid url");
         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(praseM3U8Failed:)])

@@ -112,6 +112,7 @@
 	[self.tabBarController setTabBarTransparent:NO];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	[self.window addSubview:tabBarController.view];
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
     return YES;
